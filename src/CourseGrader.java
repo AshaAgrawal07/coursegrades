@@ -2,58 +2,60 @@ import java.util.ArrayList;
 
 public class CourseGrader {
 
-    private int crn;
-    private String subject;
-    private int number;
-    private String title;
-    private String section;
-    private String type;
-    private String term;
-    private ArrayList<Integer> gradesRecieved;
-    private String prof;
-    private double average;
+    private int CRN;
+    private String Subject;
+    private int Number;
+    private String Title;
+    private String Section;
+    private String Type;
+    private String dTerm;
+    private int[] Grades;
+    private String Instructor;
+    private double Average;
 
     //getMethods for parsing
 
-    public int getCrn() {
-        return crn;
+    public int getCRN() {
+        return CRN;
     }
 
-    public String getSubject() {
-        return subject;
+    public java.lang.String getSubject() {
+        return Subject;
     }
 
     public int getNumber() {
-        return number;
+        return Number;
     }
 
-    public String getTitle() {
-        return title;
+    public java.lang.String getTitle() {
+        return Title;
     }
 
-    public String getSection() {
-        return section;
+    public java.lang.String getSection() {
+        return Section;
     }
 
-    public String getType() {
-        return type;
+    public java.lang.String getType() {
+        return Type;
     }
 
-    public String getTerm() {
-        return term;
+    public java.lang.String getTerm() {
+        return Term;
     }
 
-    public int[] getGradesRecieved() {
-        return gradesRecieved;
+    public int[] getGrades() {
+        return Grades;
     }
 
-    public String getProf() {
-        return prof;
+    public java.lang.String getInstructor() {
+        return Instructor;
     }
 
     public double getAverage() {
-        return average;
+        return Average;
     }
+
+
 
 
     //filtering methods
@@ -83,7 +85,8 @@ public class CourseGrader {
      * @param lowerBound the lowest inclusive numerical identifier for a course
      * @param upperBound the highest inclusive numerical identifier for a course
      *                   if upperBound is lower than lowerBound, then there will be an invalid input error
-     *                   if upperBound is 0, but there is a lowerBound, then I will consider it as "greater than given lowerBound"
+     *                   if upperBound is 0, but there is a lowerBound, then I will consider it as "greater than given
+     *                      lowerBound"
      * @return an ArrayList of courses that are within the specified range
      */
     public ArrayList<String> getCoursesWithinRange(int lowerBound, int upperBound) {
@@ -96,7 +99,8 @@ public class CourseGrader {
      * @param lowerBound the lowest inclusive number of students in any course
      * @param upperBound the highest inclusive number of students in any course
      *                   if upperBound is less than lowerBound, then there will be an invalid input error
-     *                   if upperBound is 0, but there is a lowerBound, then I will consider it as "greater than given lowerBound"
+     *                   if upperBound is 0, but there is a lowerBound, then I will consider it as "greater than given
+     *                      lowerBound"
      * @return an ArrayList of courses that meet the bounds
      */
     public ArrayList<String> getCoursesWithNumberOfStudents(int lowerBound, int upperBound) {

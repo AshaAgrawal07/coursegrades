@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -5,10 +6,13 @@ import com.google.gson.Gson;
 
 import static org.junit.Assert.*;
 
+
 public class CourseGraderTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private CourseGrader classes;
 
     @Before
     public void setUp() throws Exception {
@@ -17,8 +21,11 @@ public class CourseGraderTest {
         //newsArray = gson.fromJson(ARTICLE_ARRAY_JSON, newsArticle[].class);
     }
 
-    private static final String COURSE_JSON = "{ \"CRN\": 60354, \"Subject\": \"TE\", \"Number\": 298, \"Title\": \"Introduction to Innovation D\", \"Section\": \"IND\", \"Type\": \"LCD\", \"Term\": 120138, \"Instructor\": \"Bechtel, Jennifer M\", \"Grades\": [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], \"Average\": 3.71 }"
-    private CourseGrader classes;
+    private static final String CLASSES_JSON = "  { \"CRN\": 60354, \"Subject\": " +
+            "\"TE\", \"Number\": 298, \"Title\": \"Introduction to Innovation D\", " +
+            "\"Section\": \"IND\", \"Type\": \"LCD\", \"Term\": 120138, \"Instructor\": " +
+            "\"Bechtel, Jennifer M\", \"Grades\": [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]," +
+            " \"Average\": 3.71 },\n";
 
     @Test
     public void getSubject() {
@@ -27,7 +34,7 @@ public class CourseGraderTest {
 
     @Test
     public void getNumber() {
-        assertEquals(expected: "298", CourseGrader.getNumber());
+        assertEquals(expected: 298, CourseGrader.getNumber());
     }
 
     @Test
@@ -56,18 +63,18 @@ public class CourseGraderTest {
     }
 
     @Test
-    public void getProf() {
-        assertEquals(expected: "Bechtel, Jennifer", CourseGrader.getProf());
+    public void getInstructor() {
+        assertEquals(expected: "Bechtel, Jennifer", CourseGrader.getInstructor());
     }
 
     @Test
-    public void getAvg() {
-        assertEquals(expected: 3.71, CourseGrader.getAvg());
+    public void getAverage() {
+        assertEquals(expected: 3.71, CourseGrader.getAverage());
     }
 
     @Test
-    public void getGradesRecieved() {
-        assertEquals(expected: [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], CourseGrader.getGradesRecieved());
+    public void getGrades() {
+        assertEquals(expected: [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], CourseGrader.getGrades());
     }
 
     //-------------
