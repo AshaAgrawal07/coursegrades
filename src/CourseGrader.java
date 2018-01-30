@@ -52,20 +52,20 @@ public class CourseGrader {
 
     /**
      *
-     * @param year the year we want to search through to find the course with the most students
-     * @return the most number of students in any class for the given year
+     * @param course the course we want to search through
+     * @return the most number of students the given course ever had
      */
-    public ArrayList<Integer> getMostStudents(int year) {
+    public ArrayList<Integer> getMostStudents(String course) {
         ArrayList<Integer> mostStudents = new ArrayList<Integer>();
         return mostStudents;
     }
 
     /**
      *
-     * @param year the year we want to search through to find the course with the least students
-     * @return the least number of students in any class for the given year
+     * @param course the course we want to search through
+     * @return the least number of students the given course ever had
      */
-    public ArrayList<Integer> getLeastStudents(int year) {
+    public ArrayList<Integer> getLeastStudents(String course) {
         ArrayList<Integer> leastStudents = new ArrayList<Integer>();
         return leastStudents;
     }

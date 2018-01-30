@@ -99,7 +99,7 @@ public class CourseGraderTest {
     }
 
     @Test
-    public void courseRangNull() {
+    public void courseRangeNull() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Null input");
         CourseGrader.getCoursesWithinRange(null, null);
@@ -156,7 +156,29 @@ public class CourseGraderTest {
     //-------------
 
     @Test
-    public void getMostStudents() {
+    public void getMostStudentsExists() {
+        assertEquals( **fill **,CourseGrader.getMostStudents("CS"));
+    }
+
+    @Test
+    public void courseWithMostStudentsNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.getMostStudents(null);
+    }
+
+    @Test
+    public void courseWithMostStudentsEmpty() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.getMostStudents("");
+    }
+
+    @Test
+    public void courseWithMostStudentsDNE() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Invalid input");
+        CourseGrader.getMostStudents("DERP~~~");
     }
 
     //-------------
@@ -164,7 +186,29 @@ public class CourseGraderTest {
     //-------------
 
     @Test
-    public void getLeastStudents() {
+    public void getLeastStudentsExists() {
+        assertEquals( **fill **,CourseGrader.getLeastStudents("CS"));
+    }
+
+    @Test
+    public void courseWithLeatStudentsNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.getLeastStudents(null);
+    }
+
+    @Test
+    public void courseWithLeastStudentsEmpty() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.getLeastStudents("");
+    }
+
+    @Test
+    public void courseWithleastStudentsDNE() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Invalid input");
+        CourseGrader.getLeastStudents("DERP~~~");
     }
 
     //-------------
