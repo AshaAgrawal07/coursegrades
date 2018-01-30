@@ -1,6 +1,60 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class CourseGrader {
+
+    private int crn;
+    private String subject;
+    private int number;
+    private String title;
+    private String section;
+    private String type;
+    private String term;
+    private ArrayList<Integer> gradesRecieved;
+    private String prof;
+    private double average;
+
+    //getMethods for parsing
+
+    public int getCrn() {
+        return crn;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public ArrayList<Integer> getGradesRecieved() {
+        return gradesRecieved;
+    }
+
+    public String getProf() {
+        return prof;
+    }
+
+    public double getAverage() {
+        return average;
+    }
+
 
     //filtering methods
 
@@ -96,8 +150,7 @@ public class CourseGrader {
 
     /**
      *
-     * @param course the course we are trying to find the average GPA for
-     * @return the average GPA of the students who took the given course
+     * @return the average GPA of the students per class
      */
     public ArrayList<double> avgGPA () {
         ArrayList<Double> averages = new ArrayList<String>();

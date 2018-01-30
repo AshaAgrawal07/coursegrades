@@ -1,13 +1,25 @@
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import com.google.gson.Gson;
 
 import static org.junit.Assert.*;
 
 public class CourseGraderTest {
 
+    private static final String COURSE_JSON = "{ \"CRN\": 60354, \"Subject\": \"TE\", \"Number\": 298, \"Title\": \"Introduction to Innovation D\", \"Section\": \"IND\", \"Type\": \"LCD\", \"Term\": 120138, \"Instructor\": \"Bechtel, Jennifer M\", \"Grades\": [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], \"Average\": 3.71 }"
+    private CourseGrader class;
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    @Before
+    public void setUp() throws Exception {
+        Gson gson = new Gson();
+        class = gson.fromJson(COURSE_JSON, CourseGrader.class);
+        //newsArray = gson.fromJson(ARTICLE_ARRAY_JSON, newsArticle[].class);
+    }
+
 
     //-------------
     //tests for the getCoursesFromDept()
@@ -130,6 +142,7 @@ public class CourseGraderTest {
     public void getCoursesWithNumberOfStudentsGreaterThan() {
         assertEquals( **fill **,CourseGrader.getCoursesWithNumberOfStudents(200, 0));
     }
+
     @Test
     public void studentRangNull() {
         thrown.expect(IllegalArgumentException.class);
@@ -217,33 +230,33 @@ public class CourseGraderTest {
 
     @Test
     public void totalStudentsInCoursesIsValid() {
-        assertEquals( **fill **,CourseGrader.totalStudentsInCourses(<"ACCY", "CS", "MATH">));
+        assertEquals( **fill **,CourseGrader.totalStudentsInCourses( < "ACCY", "CS", "MATH" >));
     }
 
     @Test
     public void totalStudentsInCoursesIsValidLowerCase() {
-        assertEquals( **fill **,CourseGrader.totalStudentsInCourses(<"ACCY", "Cs", "math">));
+        assertEquals( **fill **,CourseGrader.totalStudentsInCourses( < "ACCY", "Cs", "math" >));
     }
 
     @Test
     public void totalStudentsInCoursesDNE() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Invalid input");
-        CourseGrader.totalStudentsInCourses(<"ACCY", "DERP", "MATH">);
+        CourseGrader.totalStudentsInCourses( < "ACCY", "DERP", "MATH" >);
     }
 
     @Test
     public void totalStudentsInCoursesNull() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Null input");
-        CourseGrader.totalStudentsInCourses(<null, "CS", "MATH">);
+        CourseGrader.totalStudentsInCourses( < null, "CS", "MATH" >);
     }
 
     @Test
     public void totalStudentsInCoursesNull() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Null input");
-        CourseGrader.totalStudentsInCourses(<"ACCY", "", "MATH">);
+        CourseGrader.totalStudentsInCourses( < "ACCY", "", "MATH" >);
     }
 
     //-------------
