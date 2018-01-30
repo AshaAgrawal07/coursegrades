@@ -43,7 +43,7 @@ public class CourseGrader {
         return term;
     }
 
-    public ArrayList<Integer> getGradesRecieved() {
+    public int[] getGradesRecieved() {
         return gradesRecieved;
     }
 

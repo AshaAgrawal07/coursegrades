@@ -7,19 +7,68 @@ import static org.junit.Assert.*;
 
 public class CourseGraderTest {
 
-    private static final String COURSE_JSON = "{ \"CRN\": 60354, \"Subject\": \"TE\", \"Number\": 298, \"Title\": \"Introduction to Innovation D\", \"Section\": \"IND\", \"Type\": \"LCD\", \"Term\": 120138, \"Instructor\": \"Bechtel, Jennifer M\", \"Grades\": [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], \"Average\": 3.71 }"
-    private CourseGrader class;
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
         Gson gson = new Gson();
-        class = gson.fromJson(COURSE_JSON, CourseGrader.class);
+        classes = gson.fromJson(COURSE_JSON, CourseGrader.class);
         //newsArray = gson.fromJson(ARTICLE_ARRAY_JSON, newsArticle[].class);
     }
 
+    private static final String COURSE_JSON = "{ \"CRN\": 60354, \"Subject\": \"TE\", \"Number\": 298, \"Title\": \"Introduction to Innovation D\", \"Section\": \"IND\", \"Type\": \"LCD\", \"Term\": 120138, \"Instructor\": \"Bechtel, Jennifer M\", \"Grades\": [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], \"Average\": 3.71 }"
+    private CourseGrader classes;
+
+    @Test
+    public void getSubject() {
+        assertEquals(expected: "TE", CourseGrader.getSubject());
+    }
+
+    @Test
+    public void getNumber() {
+        assertEquals(expected: "298", CourseGrader.getNumber());
+    }
+
+    @Test
+    public void getTitle() {
+        assertEquals(expected: "Introduction to Innovation D", CourseGrader.getTitle());
+    }
+
+    @Test
+    public void getCRN() {
+        assertEquals(expected: 60354, CourseGrader.getCRN());
+    }
+
+    @Test
+    public void getSection() {
+        assertEquals(expected: "IND", CourseGrader.getSection());
+    }
+
+    @Test
+    public void getType() {
+        assertEquals(expected: "LCD", CourseGrader.getType());
+    }
+
+    @Test
+    public void getTerm() {
+        assertEquals(expected: 120138, CourseGrader.getTerm());
+    }
+
+    @Test
+    public void getProf() {
+        assertEquals(expected: "Bechtel, Jennifer", CourseGrader.getProf());
+    }
+
+    @Test
+    public void getAvg() {
+        assertEquals(expected: 3.71, CourseGrader.getAvg());
+    }
+
+    @Test
+    public void getGradesRecieved() {
+        assertEquals(expected: [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], CourseGrader.getGradesRecieved());
+    }
 
     //-------------
     //tests for the getCoursesFromDept()
