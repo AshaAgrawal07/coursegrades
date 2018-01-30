@@ -216,7 +216,34 @@ public class CourseGraderTest {
     //-------------
 
     @Test
-    public void totalStudentsInCourses() {
+    public void totalStudentsInCoursesIsValid() {
+        assertEquals( **fill **,CourseGrader.totalStudentsInCourses(<"ACCY", "CS", "MATH">));
+    }
+
+    @Test
+    public void totalStudentsInCoursesIsValidLowerCase() {
+        assertEquals( **fill **,CourseGrader.totalStudentsInCourses(<"ACCY", "Cs", "math">));
+    }
+
+    @Test
+    public void totalStudentsInCoursesDNE() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Invalid input");
+        CourseGrader.totalStudentsInCourses(<"ACCY", "DERP", "MATH">);
+    }
+
+    @Test
+    public void totalStudentsInCoursesNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.totalStudentsInCourses(<null, "CS", "MATH">);
+    }
+
+    @Test
+    public void totalStudentsInCoursesNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.totalStudentsInCourses(<"ACCY", "", "MATH">);
     }
 
     //-------------
@@ -224,7 +251,29 @@ public class CourseGraderTest {
     //-------------
 
     @Test
-    public void totalStudentsWithGrades() {
+    public void totalStudentsWithGradesExisits() {
+        assertEquals( **fill **,CourseGrader.totalStudentsWithGrades("B", "A+"));
+    }
+
+    @Test
+    public void gradeRangeNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.totalStudentsWithGrades(null, null);
+    }
+
+    @Test
+    public void gradeRangeMakesNoSense() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Invalid input");
+        CourseGrader.totalStudentsWithGrades("R", "L");
+    }
+
+    @Test
+    public void studentRangeEmpty() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.totalStudentsWithGrades("", "");
     }
 
     //-------------
