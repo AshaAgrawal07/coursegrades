@@ -282,5 +282,6 @@ public class CourseGraderTest {
 
     @Test
     public void avgGPA() {
+        assertEquals( **fill **,CourseGrader.avgGPA());
     }
 }

@@ -99,9 +99,8 @@ public class CourseGrader {
      * @param course the course we are trying to find the average GPA for
      * @return the average GPA of the students who took the given course
      */
-    public double avgGPA (String course) {
-        double totalGPA = 0;
-        double numberOfStudents = 0;
-        return totalGPA/numberOfStudents;
+    public ArrayList<double> avgGPA () {
+        ArrayList<Double> averages = new ArrayList<String>();
+        return averages;
     }
 }
