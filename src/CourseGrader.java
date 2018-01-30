@@ -29,6 +29,7 @@ public class CourseGrader {
      * @param lowerBound the lowest inclusive numerical identifier for a course
      * @param upperBound the highest inclusive numerical identifier for a course
      *                   if upperBound is lower than lowerBound, then there will be an invalid input error
+     *                   if upperBound is 0, but there is a lowerBound, then I will consider it as "greater than given lowerBound"
      * @return an ArrayList of courses that are within the specified range
      */
     public ArrayList<String> getCoursesWithinRange(int lowerBound, int upperBound) {
@@ -44,7 +45,7 @@ public class CourseGrader {
      *                   if upperBound is 0, but there is a lowerBound, then I will consider it as "greater than given lowerBound"
      * @return an ArrayList of courses that meet the bounds
      */
-    public ArrayList<String> getCoursesWithNumberofStudents(int lowerBound, int upperBound) {
+    public ArrayList<String> getCoursesWithNumberOfStudents(int lowerBound, int upperBound) {
         ArrayList<String> coursesWithStudents = new ArrayList<String>();
         return coursesWithStudents;
     }
