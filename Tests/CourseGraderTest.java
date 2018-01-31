@@ -72,13 +72,13 @@ public class CourseGraderTest {
 
     @Test
     public void getAverage() {
-        assertEquals(3.71, classes.getAverage());
+        assertEquals(3.71, classes.getAverage(), 0);
     }
 
     @Test
     public void getGrades() {
         int[] grades = {1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0};
-        assertEquals(grades, classes.getGrades());
+        assertArrayEquals(grades, classes.getGrades());
     }
 
     //----
@@ -139,7 +139,7 @@ public class CourseGraderTest {
 
     @Test
     public void getAverageArray() {
-        assertEquals(3.72, classesArray[0].getAverage());
+        assertEquals(3.72, classesArray[0].getAverage(), 0);
     }
 
     @Test
@@ -148,282 +148,250 @@ public class CourseGraderTest {
         assertArrayEquals(grades, classesArray[0].getGrades());
     }
 
+    //PART TWO TESTING
+
+    @Test
+    public void sizeFits() {
+        assertEquals(2586+2538+2273+2236+186+175, CourseGrader.convertToList().size());
+    }
+
     //FILTERING TESTS BEGIN
 
     //-------------
     //tests for the getCoursesFromDept()
     //-------------
     /**
-    @Test
-    public void getCoursesFromDeptExists() {
-        assertEquals( **fill **,CourseGrader.getCoursesFromDept("ACCY"));
-    }
+     @Test public void getCoursesFromDeptExists() {
+     assertEquals( **fill **,CourseGrader.getCoursesFromDept("ACCY"));
+     }
 
-    @Test
-    public void deptNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getCoursesFromDept(null);
-    }
+     @Test public void deptNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getCoursesFromDept(null);
+     }
 
-    @Test
-    public void deptEmpty() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getCoursesFromDept("");
-    }
+     @Test public void deptEmpty() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getCoursesFromDept("");
+     }
 
-    @Test
-    public void deptDNE() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.getCoursesFromDept("DERP");
-    }
+     @Test public void deptDNE() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.getCoursesFromDept("DERP");
+     }
 
-    //-------------
-    //tests for getProfs
-    //-------------
+     //-------------
+     //tests for getProfs
+     //-------------
 
-    @Test
-    public void getProfsExistsLowerCase() {
-        assertEquals( **fill **,CourseGrader.getProfs("tim"));
-    }
+     @Test public void getProfsExistsLowerCase() {
+     assertEquals( **fill **,CourseGrader.getProfs("tim"));
+     }
 
-    @Test
-    public void getProfsExistsUpperCase() {
-        assertEquals( **fill **,CourseGrader.getProfs("Tim"));
-    }
+     @Test public void getProfsExistsUpperCase() {
+     assertEquals( **fill **,CourseGrader.getProfs("Tim"));
+     }
 
-    @Test
-    public void profDNE() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.getProfs("Derpity derp derp");
-    }
+     @Test public void profDNE() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.getProfs("Derpity derp derp");
+     }
 
-    @Test
-    public void profNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getProfs(null);
-    }
+     @Test public void profNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getProfs(null);
+     }
 
-    @Test
-    public void profEmpty() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getProfs("");
-    }
+     @Test public void profEmpty() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getProfs("");
+     }
 
-    //-------------
-    //tests for getCoursesWithinRange
-    //-------------
+     //-------------
+     //tests for getCoursesWithinRange
+     //-------------
 
-    @Test
-    public void getCoursesWithinRangeExists() {
-        assertEquals( **fill **,CourseGrader.getCoursesWithinRange(40, 100));
-    }
+     @Test public void getCoursesWithinRangeExists() {
+     assertEquals( **fill **,CourseGrader.getCoursesWithinRange(40, 100));
+     }
 
-    @Test
-    public void getCoursesWithinRangeExistsLessThan() {
-        assertEquals( **fill **,CourseGrader.getCoursesWithinRange(0, 100));
-    }
+     @Test public void getCoursesWithinRangeExistsLessThan() {
+     assertEquals( **fill **,CourseGrader.getCoursesWithinRange(0, 100));
+     }
 
-    @Test
-    public void getCoursesWithinRangeExistsGreaterThan() {
-        assertEquals( **fill **,CourseGrader.getCoursesWithinRange(400, 0));
-    }
+     @Test public void getCoursesWithinRangeExistsGreaterThan() {
+     assertEquals( **fill **,CourseGrader.getCoursesWithinRange(400, 0));
+     }
 
-    @Test
-    public void getCoursesWithinRangeExistsEquals() {
-        assertEquals( **fill **,CourseGrader.getCoursesWithinRange(400, 400));
-    }
+     @Test public void getCoursesWithinRangeExistsEquals() {
+     assertEquals( **fill **,CourseGrader.getCoursesWithinRange(400, 400));
+     }
 
-    @Test
-    public void courseRangeNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getCoursesWithinRange(null, null);
-    }
+     @Test public void courseRangeNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getCoursesWithinRange(null, null);
+     }
 
-    @Test
-    public void courseRangeMakesNoSense() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.getCoursesWithinRange(400, 300);
-    }
+     @Test public void courseRangeMakesNoSense() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.getCoursesWithinRange(400, 300);
+     }
 
-    //-------------
-    //tests for coursesWithNumberOfStudents
-    //-------------
+     //-------------
+     //tests for coursesWithNumberOfStudents
+     //-------------
 
-    @Test
-    public void getCoursesWithNumberOfStudentsExisits() {
-        assertEquals( **fill **,CourseGrader.getCoursesWithNumberOfStudents(10, 40));
-    }
+     @Test public void getCoursesWithNumberOfStudentsExisits() {
+     assertEquals( **fill **,CourseGrader.getCoursesWithNumberOfStudents(10, 40));
+     }
 
-    @Test
-    public void getCoursesWithNumberOfStudentsLessThan() {
-        assertEquals( **fill **,CourseGrader.getCoursesWithNumberOfStudents(0, 40));
-    }
+     @Test public void getCoursesWithNumberOfStudentsLessThan() {
+     assertEquals( **fill **,CourseGrader.getCoursesWithNumberOfStudents(0, 40));
+     }
 
-    @Test
-    public void getCoursesWithNumberOfStudentsGreaterThan() {
-        assertEquals( **fill **,CourseGrader.getCoursesWithNumberOfStudents(200, 0));
-    }
+     @Test public void getCoursesWithNumberOfStudentsGreaterThan() {
+     assertEquals( **fill **,CourseGrader.getCoursesWithNumberOfStudents(200, 0));
+     }
 
-    @Test
-    public void studentRangNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getCoursesWithNumberOfStudents(null, null);
-    }
+     @Test public void studentRangNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getCoursesWithNumberOfStudents(null, null);
+     }
 
-    @Test
-    public void studentRangeMakesNoSense() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.getCoursesWithNumberOfStudents(400, 300);
-    }
+     @Test public void studentRangeMakesNoSense() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.getCoursesWithNumberOfStudents(400, 300);
+     }
 
-    @Test
-    public void studentRangeDNE() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.getCoursesWithNumberOfStudents(1000, 3000);
-    }
+     @Test public void studentRangeDNE() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.getCoursesWithNumberOfStudents(1000, 3000);
+     }
 
-    //-------------
-    //tests for mostStudents
-    //-------------
+     //-------------
+     //tests for mostStudents
+     //-------------
 
-    @Test
-    public void getMostStudentsExists() {
-        assertEquals( **fill **,CourseGrader.getMostStudents("CS"));
-    }
+     @Test public void getMostStudentsExists() {
+     assertEquals( **fill **,CourseGrader.getMostStudents("CS"));
+     }
 
-    @Test
-    public void courseWithMostStudentsNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getMostStudents(null);
-    }
+     @Test public void courseWithMostStudentsNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getMostStudents(null);
+     }
 
-    @Test
-    public void courseWithMostStudentsEmpty() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getMostStudents("");
-    }
+     @Test public void courseWithMostStudentsEmpty() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getMostStudents("");
+     }
 
-    @Test
-    public void courseWithMostStudentsDNE() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.getMostStudents("DERP~~~");
-    }
+     @Test public void courseWithMostStudentsDNE() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.getMostStudents("DERP~~~");
+     }
 
-    //-------------
-    //tests for leastStudents
-    //-------------
+     //-------------
+     //tests for leastStudents
+     //-------------
 
-    @Test
-    public void getLeastStudentsExists() {
-        assertEquals( **fill **,CourseGrader.getLeastStudents("CS"));
-    }
+     @Test public void getLeastStudentsExists() {
+     assertEquals( **fill **,CourseGrader.getLeastStudents("CS"));
+     }
 
-    @Test
-    public void courseWithLeatStudentsNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getLeastStudents(null);
-    }
+     @Test public void courseWithLeatStudentsNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getLeastStudents(null);
+     }
 
-    @Test
-    public void courseWithLeastStudentsEmpty() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.getLeastStudents("");
-    }
+     @Test public void courseWithLeastStudentsEmpty() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.getLeastStudents("");
+     }
 
-    @Test
-    public void courseWithleastStudentsDNE() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.getLeastStudents("DERP~~~");
-    }
+     @Test public void courseWithleastStudentsDNE() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.getLeastStudents("DERP~~~");
+     }
 
-    //-------------
-    //tests for totalStudentsInCourses
-    //-------------
+     //-------------
+     //tests for totalStudentsInCourses
+     //-------------
 
-    @Test
-    public void totalStudentsInCoursesIsValid() {
-        assertEquals( **fill **,CourseGrader.totalStudentsInCourses( < "ACCY", "CS", "MATH" >));
-    }
+     @Test public void totalStudentsInCoursesIsValid() {
+     assertEquals( **fill **,CourseGrader.totalStudentsInCourses( < "ACCY", "CS", "MATH" >));
+     }
 
-    @Test
-    public void totalStudentsInCoursesIsValidLowerCase() {
-        assertEquals( **fill **,CourseGrader.totalStudentsInCourses( < "ACCY", "Cs", "math" >));
-    }
+     @Test public void totalStudentsInCoursesIsValidLowerCase() {
+     assertEquals( **fill **,CourseGrader.totalStudentsInCourses( < "ACCY", "Cs", "math" >));
+     }
 
-    @Test
-    public void totalStudentsInCoursesDNE() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.totalStudentsInCourses( < "ACCY", "DERP", "MATH" >);
-    }
+     @Test public void totalStudentsInCoursesDNE() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.totalStudentsInCourses( < "ACCY", "DERP", "MATH" >);
+     }
 
-    @Test
-    public void totalStudentsInCoursesNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.totalStudentsInCourses( < null, "CS", "MATH" >);
-    }
+     @Test public void totalStudentsInCoursesNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.totalStudentsInCourses( < null, "CS", "MATH" >);
+     }
 
-    @Test
-    public void totalStudentsInCoursesNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.totalStudentsInCourses( < "ACCY", "", "MATH" >);
-    }
+     @Test public void totalStudentsInCoursesNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.totalStudentsInCourses( < "ACCY", "", "MATH" >);
+     }
 
-    //-------------
-    //tests for totalStudentsWithGrades
-    //-------------
+     //-------------
+     //tests for totalStudentsWithGrades
+     //-------------
 
-    @Test
-    public void totalStudentsWithGradesExisits() {
-        assertEquals( **fill **,CourseGrader.totalStudentsWithGrades("B", "A+"));
-    }
+     @Test public void totalStudentsWithGradesExisits() {
+     assertEquals( **fill **,CourseGrader.totalStudentsWithGrades("B", "A+"));
+     }
 
-    @Test
-    public void gradeRangeNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.totalStudentsWithGrades(null, null);
-    }
+     @Test public void gradeRangeNull() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.totalStudentsWithGrades(null, null);
+     }
 
-    @Test
-    public void gradeRangeMakesNoSense() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Invalid input");
-        CourseGrader.totalStudentsWithGrades("R", "L");
-    }
+     @Test public void gradeRangeMakesNoSense() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Invalid input");
+     CourseGrader.totalStudentsWithGrades("R", "L");
+     }
 
-    @Test
-    public void studentRangeEmpty() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Null input");
-        CourseGrader.totalStudentsWithGrades("", "");
-    }*/
+     @Test public void studentRangeEmpty() {
+     thrown.expect(IllegalArgumentException.class);
+     thrown.expectMessage("Null input");
+     CourseGrader.totalStudentsWithGrades("", "");
+     }*/
 
     //-------------
     //tests for avgGPA
     //-------------
 
-    /**@Test
-    public void avgGPA() {
-        assertEquals( **fill **,CourseGrader.avgGPA());
+    /**@Test public void avgGPA() {
+    assertEquals( **fill **,CourseGrader.avgGPA());
     }*/
 }

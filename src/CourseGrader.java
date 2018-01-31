@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class CourseGrader {
@@ -78,7 +79,18 @@ public class CourseGrader {
     }
 
 
+    //method for part 2
 
+    public static ArrayList<Object> convertToList() {
+        List<String> files = Data.getJsonFilesAsList();
+        ArrayList<Object> filesIntoObjects = new ArrayList<Object>(files.size());
+        if (files.size() != 0) {
+            for (int i = 0; i < files.size(); i++) {
+                filesIntoObjects.set(i, Data.getFileContentsAsString(files.get(i)));
+            }
+        }
+        return filesIntoObjects;
+    }
 
     //filtering methods
 
@@ -171,6 +183,12 @@ public class CourseGrader {
      */
     public int totalStudentsWithGrades (String lowerBound, String upperBound) {
         int total = 0;
+
+        /*for(int i = 0; i < courseObjects.size; i++) {
+            if(courseObjects.get(i).getGrade()) {
+
+            }
+        }*/
         return total;
     }
 
