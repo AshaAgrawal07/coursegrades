@@ -100,7 +100,6 @@ public class CourseGrader {
     //filtering methods
 
     /**
-     *
      * @param dept the department or course subject that we are looking in
      * @return tan Arraylist of the names of the courses in the given department
      */
@@ -112,7 +111,7 @@ public class CourseGrader {
         convertToList();
 
         for (int i = 0; i < convertToList().size(); i++) {
-            if ( convertToList().get(i).getSubject().equals(dept.toUpperCase())) {
+            if (convertToList().get(i).getSubject().equals(dept.toUpperCase())) {
                 coursesFromDept.add(convertToList().get(i).getTitle());
             }
         }
@@ -124,7 +123,6 @@ public class CourseGrader {
     }
 
     /**
-     *
      * @param prof a string with part of a name
      * @return an ArrayList of professor names with the given String in it
      */
@@ -146,12 +144,11 @@ public class CourseGrader {
     }
 
     /**
-     *
      * @param lowerBound the lowest inclusive numerical identifier for a course
      * @param upperBound the highest inclusive numerical identifier for a course
      *                   if upperBound is lower than lowerBound, then there will be an invalid input error
      *                   if upperBound is 0, but there is a lowerBound, then I will consider it as "greater than given
-     *                      lowerBound"
+     *                   lowerBound"
      * @return an ArrayList of courses that are within the specified range
      */
     public static ArrayList<String> getCoursesWithinRange(int lowerBound, int upperBound) throws IllegalArgumentException {
@@ -173,12 +170,11 @@ public class CourseGrader {
     }
 
     /**
-     *
      * @param lowerBound the lowest inclusive number of students in any course
      * @param upperBound the highest inclusive number of students in any course
      *                   if upperBound is less than lowerBound, then there will be an invalid input error
      *                   if upperBound is 0, but there is a lowerBound, then I will consider it as "greater than given
-     *                      lowerBound"
+     *                   lowerBound"
      * @return an ArrayList of courses that meet the bounds
      */
     public static ArrayList<String> getCoursesWithNumberOfStudents(int lowerBound, int upperBound) throws IllegalArgumentException {
@@ -206,11 +202,13 @@ public class CourseGrader {
     }
 
     /**
-     *
      * @param course the subject we want to search through
      * @return the most number of students the given subject ever had
      */
     public static int getMostStudents(String course) {
+        if (getCoursesFromDept(course).size() == 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
         int mostStudents = 0;
         if (course == null || course.toLowerCase().trim() == "") {
             throw new IllegalArgumentException("Null input");
@@ -218,14 +216,14 @@ public class CourseGrader {
 
         for (int i = 0; i < convertToList().size(); i++) {
             if (convertToList().get(i).getSubject().toUpperCase().equals(course.toUpperCase().trim())) {
-               //get the grade distribution and then find the total number of students in the course
+                //get the grade distribution and then find the total number of students in the course
                 int[] gradesDistribution = convertToList().get(i).getGrades();
                 int totalStudents = 0;
                 for (int j = 0; j < gradesDistribution.length; j++) {
                     totalStudents += gradesDistribution[j];
                 }
                 //reset the most number of students in the course if need be
-                if(totalStudents > mostStudents) {
+                if (totalStudents > mostStudents) {
                     mostStudents = totalStudents;
                 }
             }
@@ -234,11 +232,15 @@ public class CourseGrader {
     }
 
     /**
-     *
      * @param course the course we want to search through
      * @return the least number of students the given course ever had
      */
     public static int getLeastStudents(String course) {
+
+        if (getCoursesFromDept(course).size() == 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
         int leastStudents = 0;
         if (course == null || course.toLowerCase().trim() == "") {
             throw new IllegalArgumentException("Null input");
@@ -253,7 +255,7 @@ public class CourseGrader {
                     totalStudents += gradesDistribution[j];
                 }
                 //reset the most number of students in the course if need be
-                if(totalStudents < leastStudents) {
+                if (totalStudents < leastStudents) {
                     leastStudents = totalStudents;
                 }
             }
@@ -264,39 +266,53 @@ public class CourseGrader {
     //aggregation methods
 
     /**
-     *
      * @param courses the collection of classes that we are searching through
      * @return the total number of students that have taken the collection of classes
      */
-    public static int totalStudentsInCourses (ArrayList<String> courses) {
+    public static int totalStudentsInCourses(ArrayList<String> courses) {
+        for (int a = 0; a < courses.size(); a++) {
+            if (getCoursesFromDept(courses.get(a)).size() == 0) {
+                throw new IllegalArgumentException("Invalid input");
+            }
+        }
         int total = 0;
+        for (int k = 0; k < courses.size(); k++) {
+            for (int i = 0; i < convertToList().size(); i++) {
+                if (convertToList().get(i).getSubject().toUpperCase().equals(courses.get(k).toUpperCase().trim())) {
+                    //get the grade distribution and then find the total number of students in the course
+                    int[] gradesDistribution = convertToList().get(i).getGrades();
+                    int totalStudents = 0;
+                    for (int j = 0; j < gradesDistribution.length; j++) {
+                        totalStudents += gradesDistribution[j];
+                    }
+                    total += totalStudents;
+                }
+            }
+        }
+
         return total;
     }
 
     /**
-     *
      * @param lowerBound the inclusive lowerBound of the grade
      * @param upperBound the inclusive upperBound of the grade
      *                   if upperBound is lower than the lowerBound, then there will be an invalid input error
      * @return the total number of students within the grade ranges
      */
-    public static int totalStudentsWithGrades (String lowerBound, String upperBound) throws IllegalArgumentException {
+    public static int totalStudentsWithGrades(String lowerBound, String upperBound) throws IllegalArgumentException {
         int total = 0;
 
-        /*for(int i = 0; i < courseObjects.size; i++) {
-            if(courseObjects.get(i).getGrade()) {
-
-            }
-        }*/
         return total;
     }
 
     /**
-     *
      * @return the average GPA of the students per class
      */
-    public static ArrayList<Double> avgGPA () {
+    public static ArrayList<Double> avgGPA() {
         ArrayList<Double> averages = new ArrayList<Double>();
+        for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
+            averages.add(CourseGrader.convertToList().get(i).getAverage());
+        }
         return averages;
     }
 }

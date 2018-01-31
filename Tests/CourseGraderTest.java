@@ -388,6 +388,13 @@ public class CourseGraderTest {
         CourseGrader.getMostStudents("");
     }
 
+    @Test
+    public void totalStudentsInCoursesDNE() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Invalid input");
+        CourseGrader.getMostStudents("DERP");
+    }
+
 
     //-------------
     //tests for leastStudents
@@ -428,69 +435,112 @@ public class CourseGraderTest {
         CourseGrader.getLeastStudents("");
     }
 
-/**
- //-------------
- //tests for totalStudentsInCourses
- //-------------
+    @Test
+    public void totalStudentsInCoursesDNE() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Invalid input");
+        CourseGrader.getLeastStudents("DERP");
+    }
 
- @Test public void totalStudentsInCoursesIsValid() {
- assertEquals( **fill **,CourseGrader.totalStudentsInCourses( < "ACCY", "CS", "MATH" >));
- }
 
- @Test public void totalStudentsInCoursesIsValidLowerCase() {
- assertEquals( **fill **,CourseGrader.totalStudentsInCourses( < "ACCY", "Cs", "math" >));
- }
+    //-------------
+    //tests for totalStudentsInCourses
+    //-------------
 
- @Test public void totalStudentsInCoursesDNE() {
- thrown.expect(IllegalArgumentException.class);
- thrown.expectMessage("Invalid input");
- CourseGrader.totalStudentsInCourses( < "ACCY", "DERP", "MATH" >);
- }
+    @Test
+    public void totalStudentsInCoursesIsValid() {
+        int total = 0;
+        for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
+            if (CourseGrader.convertToList().get(i).getSubject().toUpperCase().equals("ACCY")
+                    || CourseGrader.convertToList().get(i).getSubject().toUpperCase().equals("CS")
+                    || CourseGrader.convertToList().get(i).getSubject().toUpperCase().equals("MATH")) {
+                //get the grade distribution and then find the total number of students in the course
+                int[] gradesDistribution = CourseGrader.convertToList().get(i).getGrades();
+                int totalStudents = 0;
+                for (int j = 0; j < gradesDistribution.length; j++) {
+                    totalStudents += gradesDistribution[j];
+                }
+                total += totalStudents;
+            }
+        }
 
- @Test public void totalStudentsInCoursesNull() {
- thrown.expect(IllegalArgumentException.class);
- thrown.expectMessage("Null input");
- CourseGrader.totalStudentsInCourses( < null, "CS", "MATH" >);
- }
+        assertEquals(total, CourseGrader.totalStudentsInCourses( < "ACCY", "CS", "MATH" >));
+    }
 
- @Test public void totalStudentsInCoursesNull() {
- thrown.expect(IllegalArgumentException.class);
- thrown.expectMessage("Null input");
- CourseGrader.totalStudentsInCourses( < "ACCY", "", "MATH" >);
- }
+    @Test
+    public void totalStudentsInCoursesIsValidLowerCase() {
+        int total = 0;
+        for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
+            if (CourseGrader.convertToList().get(i).getSubject().toUpperCase().equals("ACCY")
+                    || CourseGrader.convertToList().get(i).getSubject().toUpperCase().equals("CS")
+                    || CourseGrader.convertToList().get(i).getSubject().toUpperCase().equals("MATH")) {
+                //get the grade distribution and then find the total number of students in the course
+                int[] gradesDistribution = CourseGrader.convertToList().get(i).getGrades();
+                int totalStudents = 0;
+                for (int j = 0; j < gradesDistribution.length; j++) {
+                    totalStudents += gradesDistribution[j];
+                }
+                total += totalStudents;
+            }
+        }
+        assertEquals(total, CourseGrader.totalStudentsInCourses( < "ACCY", "Cs", "math" >));
+    }
 
- //-------------
- //tests for totalStudentsWithGrades
- //-------------
+    @Test
+    public void totalStudentsInCoursesDNE() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Invalid input");
+        CourseGrader.totalStudentsInCourses( < "ACCY", "DERP", "MATH" >);
+    }
 
- @Test public void totalStudentsWithGradesExisits() {
- assertEquals( **fill **,CourseGrader.totalStudentsWithGrades("B", "A+"));
- }
+    @Test
+    public void totalStudentsInCoursesNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.totalStudentsInCourses( < null, "CS", "MATH" >);
+    }
 
- @Test public void gradeRangeNull() {
- thrown.expect(IllegalArgumentException.class);
- thrown.expectMessage("Null input");
- CourseGrader.totalStudentsWithGrades(null, null);
- }
+    @Test
+    public void totalStudentsInCoursesNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.totalStudentsInCourses( < "ACCY", "", "MATH" >);
+    }
 
- @Test public void gradeRangeMakesNoSense() {
- thrown.expect(IllegalArgumentException.class);
- thrown.expectMessage("Invalid input");
- CourseGrader.totalStudentsWithGrades("R", "L");
- }
+    /**
+     * //-------------
+     * //tests for totalStudentsWithGrades
+     * //-------------
+     *
+     * @Test public void totalStudentsWithGradesExisits() {
+     * assertEquals( **fill **,CourseGrader.totalStudentsWithGrades("B", "A+"));
+     * }
+     * @Test public void gradeRangeNull() {
+     * thrown.expect(IllegalArgumentException.class);
+     * thrown.expectMessage("Null input");
+     * CourseGrader.totalStudentsWithGrades(null, null);
+     * }
+     * @Test public void gradeRangeMakesNoSense() {
+     * thrown.expect(IllegalArgumentException.class);
+     * thrown.expectMessage("Invalid input");
+     * CourseGrader.totalStudentsWithGrades("R", "L");
+     * }
+     * @Test public void studentRangeEmpty() {
+     * thrown.expect(IllegalArgumentException.class);
+     * thrown.expectMessage("Null input");
+     * CourseGrader.totalStudentsWithGrades("", "");
+     * }
+     */
+    //-------------
+    //tests for avgGPA
+    //-------------
+    @Test
+    public void avgGPA() {
+        ArrayList<Double> averages = new ArrayList<Double>();
+        for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
+            averages.add(CourseGrader.convertToList().get(i).getAverage());
+        }
+        assertEquals(averages, CourseGrader.avgGPA());
+    }
 
- @Test public void studentRangeEmpty() {
- thrown.expect(IllegalArgumentException.class);
- thrown.expectMessage("Null input");
- CourseGrader.totalStudentsWithGrades("", "");
- }
-
- //-------------
- //tests for avgGPA
- //-------------
-
- @Test public void avgGPA() {
- assertEquals( 4.0,CourseGrader.avgGPA());
- }
- */
 }
