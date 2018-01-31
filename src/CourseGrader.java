@@ -87,7 +87,7 @@ public class CourseGrader {
 
     public static ArrayList<CourseGrader> convertToList() {
         List<String> files = Data.getJsonFilesAsList();
-        ArrayList<CourseGrader> filesIntoObjects = new ArrayList<CourseGrader>();
+        ArrayList<CourseGrader> filesIntoObjects = new ArrayList<>();
 
         for (String filename : files) {
             Gson gson = new Gson();
@@ -104,7 +104,7 @@ public class CourseGrader {
      * @return tan Arraylist of the names of the courses in the given department
      */
     public static ArrayList<String> getCoursesFromDept(String dept) throws IllegalArgumentException {
-        ArrayList<String> coursesFromDept = new ArrayList<String>();
+        ArrayList<String> coursesFromDept = new ArrayList<>();
         if (dept == null || dept.toUpperCase().trim() == "") {
             throw new IllegalArgumentException("Null input");
         }
@@ -127,7 +127,7 @@ public class CourseGrader {
      * @return an ArrayList of professor names with the given String in it
      */
     public static ArrayList<String> getProfs(String prof) throws IllegalArgumentException {
-        ArrayList<String> profs = new ArrayList<String>();
+        ArrayList<String> profs = new ArrayList<>();
         if (prof == null || prof.toLowerCase().trim() == "") {
             throw new IllegalArgumentException("Null input");
         }
@@ -152,7 +152,7 @@ public class CourseGrader {
      * @return an ArrayList of courses that are within the specified range
      */
     public static ArrayList<String> getCoursesWithinRange(int lowerBound, int upperBound) throws IllegalArgumentException {
-        ArrayList<String> coursesInRange = new ArrayList<String>();
+        ArrayList<String> coursesInRange = new ArrayList<>();
 
         if (lowerBound > upperBound && upperBound != 0) {
             throw new IllegalArgumentException("Invalid input");
@@ -178,7 +178,7 @@ public class CourseGrader {
      * @return an ArrayList of courses that meet the bounds
      */
     public static ArrayList<String> getCoursesWithNumberOfStudents(int lowerBound, int upperBound) throws IllegalArgumentException {
-        ArrayList<String> coursesWithStudents = new ArrayList<String>();
+        ArrayList<String> coursesWithStudents = new ArrayList<>();
         if (lowerBound > upperBound && upperBound != 0) {
             throw new IllegalArgumentException("Invalid input");
         }
@@ -392,7 +392,7 @@ public class CourseGrader {
      * @return the average GPA of the students per class
      */
     public static ArrayList<Double> avgGPA() {
-        ArrayList<Double> averages = new ArrayList<Double>();
+        ArrayList<Double> averages = new ArrayList<>();
         for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
             averages.add(CourseGrader.convertToList().get(i).getAverage());
         }
