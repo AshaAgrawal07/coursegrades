@@ -273,6 +273,8 @@ public class CourseGrader {
         for (int a = 0; a < courses.size(); a++) {
             if (getCoursesFromDept(courses.get(a)).size() == 0) {
                 throw new IllegalArgumentException("Invalid input");
+            } else if (courses.get(a) == null) {
+                throw new IllegalArgumentException("Null input");
             }
         }
         int total = 0;
@@ -301,6 +303,87 @@ public class CourseGrader {
      */
     public static int totalStudentsWithGrades(String lowerBound, String upperBound) throws IllegalArgumentException {
         int total = 0;
+        int low = -1;
+        int up = -1;
+
+        if (lowerBound.trim().length() == 0 || upperBound.trim().length() == 0
+                || lowerBound == null || upperBound == null) {
+            throw new IllegalArgumentException("Null input");
+        }
+
+        if (lowerBound.equalsIgnoreCase("A+"))
+        {
+            low = 0;
+        } else if (lowerBound.equalsIgnoreCase("A")) {
+            low = 1;
+        } else if (lowerBound.equalsIgnoreCase("A-")) {
+            low = 2;
+        } else if (lowerBound.equalsIgnoreCase("B+")) {
+            low = 3;
+        } else if (lowerBound.equalsIgnoreCase("B")) {
+            low = 4;
+        } else if (lowerBound.equalsIgnoreCase("B-")) {
+            low = 5;
+        } else if (lowerBound.equalsIgnoreCase("C+")) {
+            low = 6;
+        } else if (lowerBound.equalsIgnoreCase("C")) {
+            low = 7;
+        } else if (lowerBound.equalsIgnoreCase("C-")) {
+            low = 8;
+        } else if (lowerBound.equalsIgnoreCase("D+")) {
+            low = 9;
+        } else if (lowerBound.equalsIgnoreCase("D")) {
+            low = 10;
+        } else if (lowerBound.equalsIgnoreCase("D-")) {
+            low = 11;
+        } else if (lowerBound.equalsIgnoreCase("F")) {
+            low = 12;
+        } else if (lowerBound.equalsIgnoreCase("W")) {
+            low = 13;
+        }
+
+        if (upperBound.equalsIgnoreCase("A+"))
+        {
+            up = 0;
+        } else if (upperBound.equalsIgnoreCase("A")) {
+            up = 1;
+        } else if (upperBound.equalsIgnoreCase("A-")) {
+            up = 2;
+        } else if (upperBound.equalsIgnoreCase("B+")) {
+            up = 3;
+        } else if (upperBound.equalsIgnoreCase("B")) {
+            up = 4;
+        } else if (upperBound.equalsIgnoreCase("B-")) {
+            up = 5;
+        } else if (upperBound.equalsIgnoreCase("C+")) {
+            up = 6;
+        } else if (upperBound.equalsIgnoreCase("C")) {
+            up = 7;
+        } else if (upperBound.equalsIgnoreCase("C-")) {
+            up = 8;
+        } else if (upperBound.equalsIgnoreCase("D+")) {
+            up = 9;
+        } else if (upperBound.equalsIgnoreCase("D")) {
+            up = 10;
+        } else if (upperBound.equalsIgnoreCase("D-")) {
+            up = 11;
+        } else if (upperBound.equalsIgnoreCase("F")) {
+            low = 12;
+        } else if (upperBound.equalsIgnoreCase("W")) {
+            low = 13;
+        }
+
+        if (up > low) {
+            throw new IllegalArgumentException("Invalid input");
+        } else if (low == -1 || up == -1) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        for (int i = 0; i < convertToList().size(); i++) {
+            for (int j = up; j <= low; j++) {
+                total+= convertToList().get(i).getGrades()[j];
+            }
+        }
 
         return total;
     }

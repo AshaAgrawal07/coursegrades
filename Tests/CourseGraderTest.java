@@ -507,30 +507,45 @@ public class CourseGraderTest {
         CourseGrader.totalStudentsInCourses( < "ACCY", "", "MATH" >);
     }
 
-    /**
-     * //-------------
-     * //tests for totalStudentsWithGrades
-     * //-------------
-     *
-     * @Test public void totalStudentsWithGradesExisits() {
-     * assertEquals( **fill **,CourseGrader.totalStudentsWithGrades("B", "A+"));
-     * }
-     * @Test public void gradeRangeNull() {
-     * thrown.expect(IllegalArgumentException.class);
-     * thrown.expectMessage("Null input");
-     * CourseGrader.totalStudentsWithGrades(null, null);
-     * }
-     * @Test public void gradeRangeMakesNoSense() {
-     * thrown.expect(IllegalArgumentException.class);
-     * thrown.expectMessage("Invalid input");
-     * CourseGrader.totalStudentsWithGrades("R", "L");
-     * }
-     * @Test public void studentRangeEmpty() {
-     * thrown.expect(IllegalArgumentException.class);
-     * thrown.expectMessage("Null input");
-     * CourseGrader.totalStudentsWithGrades("", "");
-     * }
-     */
+
+     //-------------
+    //tests for totalStudentsWithGrades
+    //-------------
+
+    @Test
+    public void totalStudentsWithGradesExisits() {
+     int total = 0;
+
+        for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
+            for (int j = 4; j <= 0; j++) {
+                total += CourseGrader.convertToList().get(i).getGrades()[j];
+            }
+        }
+
+        assertEquals( total, CourseGrader.totalStudentsWithGrades("B", "A+"));
+    }
+
+    @Test
+    public void gradeRangeNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.totalStudentsWithGrades(null, null);
+    }
+
+    @Test
+    public void gradeRangeMakesNoSense() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Invalid input");
+        CourseGrader.totalStudentsWithGrades("R", "L");
+    }
+
+    @Test
+    public void studentRangeEmpty() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Null input");
+        CourseGrader.totalStudentsWithGrades("", "");
+    }
+
     //-------------
     //tests for avgGPA
     //-------------
