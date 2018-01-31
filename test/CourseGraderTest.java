@@ -13,12 +13,13 @@ public class CourseGraderTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private CourseGrader classes;
+    private CourseGrader[] classesArray;
 
     @Before
     public void setUp() throws Exception {
         Gson gson = new Gson();
         classes = gson.fromJson(COURSE_JSON, CourseGrader.class);
-        //newsArray = gson.fromJson(ARTICLE_ARRAY_JSON, newsArticle[].class);
+        classesArray = gson.fromJSON(COURSE_JSON_ARRAY, CourseGrader[].class);
     }
 
     private static final String CLASSES_JSON = "  { \"CRN\": 60354, \"Subject\": " +
@@ -27,54 +28,121 @@ public class CourseGraderTest {
             "\"Bechtel, Jennifer M\", \"Grades\": [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]," +
             " \"Average\": 3.71 },\n";
 
+
     @Test
     public void getSubject() {
-        assertEquals(expected: "TE", CourseGrader.getSubject());
+        assertEquals("TE", classes.getSubject());
     }
 
     @Test
     public void getNumber() {
-        assertEquals(expected: 298, CourseGrader.getNumber());
+        assertEquals(298, classes.getNumber());
     }
 
     @Test
     public void getTitle() {
-        assertEquals(expected: "Introduction to Innovation D", CourseGrader.getTitle());
+        assertEquals("Introduction to Innovation D", classes.getTitle());
     }
 
     @Test
     public void getCRN() {
-        assertEquals(expected: 60354, CourseGrader.getCRN());
+        assertEquals(60354, classes.getCRN());
     }
 
     @Test
     public void getSection() {
-        assertEquals(expected: "IND", CourseGrader.getSection());
+        assertEquals("IND", classes.getSection());
     }
 
     @Test
     public void getType() {
-        assertEquals(expected: "LCD", CourseGrader.getType());
+        assertEquals("LCD", classes.getType());
     }
 
     @Test
     public void getTerm() {
-        assertEquals(expected: 120138, CourseGrader.getTerm());
+        assertEquals(120138, classes.getTerm());
     }
 
     @Test
     public void getInstructor() {
-        assertEquals(expected: "Bechtel, Jennifer", CourseGrader.getInstructor());
+        assertEquals("Bechtel, Jennifer", classes.getInstructor());
     }
 
     @Test
     public void getAverage() {
-        assertEquals(expected: 3.71, CourseGrader.getAverage());
+        assertEquals(3.71, classes.getAverage());
     }
 
     @Test
     public void getGrades() {
-        assertEquals(expected: [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], CourseGrader.getGrades());
+        assertEquals([1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], classes.getGrades());
+    }
+
+    //----
+
+    private static final String CLASSES_JSON_ARRAY = "[{ \"CRN\": 41758, \"Subject\": \"AAS\", \"Number\": 100, " +
+            "\"Title\": \"Intro Asian American Studies\", \"Section\": \"AD1\", \"Type\": \"DIS\", \"Term\": 120138, " +
+            "\"Instructor\": \"Arai, Sayuri\", \"Grades\": [6, 16, 5, 3, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0], \"Average\":" +
+            " 3.72 },\n" +
+            "  { \"CRN\": 47100, \"Subject\": \"AAS\", \"Number\": 100, \"Title\": \"Intro Asian American Studies\", " +
+            "\"Section\": \"AD2\", \"Type\": \"DIS\", \"Term\": 120138, \"Instructor\": \"Arai, Sayuri\", \"Grades\": " +
+            "[6, 11, 4, 5, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0], \"Average\": 3.64 },\n" +
+            "  { \"CRN\": 47102, \"Subject\": \"AAS\", \"Number\": 100, \"Title\": \"Intro Asian American Studies\", " +
+            "\"Section\": \"AD3\", \"Type\": \"DIS\", \"Term\": 120138, \"Instructor\": \"Davis, Thomas E\", \"Grades\":" +
+            " [2, 24, 1, 2, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0], \"Average\": 3.75 },\n" +
+            "  { \"CRN\": 51248, \"Subject\": \"AAS\", \"Number\": 100, \"Title\": \"Intro Asian American Studies\", " +
+            "\"Section\": \"AD4\", \"Type\": \"DIS\", \"Term\": 120138, \"Instructor\": \"Davis, Thomas E\", \"Grades\":" +
+            " [7, 16, 4, 4, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0], \"Average\": 3.71 },\n]";
+
+    @Test
+    public void getSubject() {
+        assertEquals("AAS", classesArray[0].getSubject());
+    }
+
+    @Test
+    public void getNumber() {
+        assertEquals(100, classesArray[0].getNumber());
+    }
+
+    @Test
+    public void getTitle() {
+        assertEquals("Intro Asian American Studies", classesArray[0].getTitle());
+    }
+
+    @Test
+    public void getCRN() {
+        assertEquals(41758, classesArray[0].getCRN());
+    }
+
+    @Test
+    public void getSection() {
+        assertEquals("AD3", classesArray[0].getSection());
+    }
+
+    @Test
+    public void getType() {
+        assertEquals("DIS", classesArray[0].getType());
+    }
+
+    @Test
+    public void getTerm() {
+        assertEquals(120138, classesArray[0].getTerm());
+    }
+
+    @Test
+    public void getInstructor() {
+        assertEquals("Aria, Sayuri", classesArray[0].getInstructor());
+    }
+
+    @Test
+    public void getAverage() {
+        assertEquals(3.72, classesArray[0].getAverage());
+    }
+
+    @Test
+    public void getGrades() {
+        assertEquals([6, 16, 5, 3, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0], classesArray[0].getGrades());
     }
 
     //-------------
