@@ -165,7 +165,7 @@ public class CourseGraderTest {
 
     @Test
     public void getCoursesFromDeptExists() {
-        assertEquals(7 + 7 + 4 + 9, CourseGrader.getCoursesFromDept("AAS"));
+        assertEquals(7 + 7 + 4 + 9, CourseGrader.getCoursesFromDept("AAS").size());
     }
 
     @Test
@@ -195,12 +195,12 @@ public class CourseGraderTest {
 
     @Test
     public void getProfsExistsLowerCase() {
-        assertEquals(17 + 18 + 19 + 12, CourseGrader.getProfs("tim"));
+        assertEquals(17 + 18 + 19 + 12, CourseGrader.getProfs("tim").size());
     }
 
     @Test
     public void getProfsExistsUpperCase() {
-        assertEquals(17 + 18 + 19 + 12, CourseGrader.getProfs("Tim"));
+        assertEquals(17 + 18 + 19 + 12, CourseGrader.getProfs("Tim").size());
     }
 
     @Test
@@ -230,7 +230,7 @@ public class CourseGraderTest {
 
     @Test
     public void getCoursesWithinRangeExists() {
-        ArrayList<String> coursesInRange = new ArrayList<String>();
+        ArrayList<String> coursesInRange = new ArrayList<>();
 
         for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
             int courseNum = CourseGrader.convertToList().get(i).getNumber();
@@ -243,7 +243,7 @@ public class CourseGraderTest {
 
     @Test
     public void getCoursesWithinRangeExistsLessThan() {
-        ArrayList<String> coursesInRange = new ArrayList<String>();
+        ArrayList<String> coursesInRange = new ArrayList<>();
 
         for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
             int courseNum = CourseGrader.convertToList().get(i).getNumber();
@@ -256,7 +256,7 @@ public class CourseGraderTest {
 
     @Test
     public void getCoursesWithinRangeExistsGreaterThan() {
-        ArrayList<String> coursesInRange = new ArrayList<String>();
+        ArrayList<String> coursesInRange = new ArrayList<>();
 
         for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
             int courseNum = CourseGrader.convertToList().get(i).getNumber();
@@ -269,7 +269,7 @@ public class CourseGraderTest {
 
     @Test
     public void getCoursesWithinRangeExistsEquals() {
-        ArrayList<String> coursesInRange = new ArrayList<String>();
+        ArrayList<String> coursesInRange = new ArrayList<>();
 
         for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
             int courseNum = CourseGrader.convertToList().get(i).getNumber();
@@ -293,7 +293,7 @@ public class CourseGraderTest {
 
     @Test
     public void getCoursesWithNumberOfStudentsExisits() {
-        ArrayList<String> coursesWithStudents = new ArrayList<String>();
+        ArrayList<String> coursesWithStudents = new ArrayList<>();
 
         for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
             int[] gradesDistribution = CourseGrader.convertToList().get(i).getGrades();
@@ -310,7 +310,7 @@ public class CourseGraderTest {
 
     @Test
     public void getCoursesWithNumberOfStudentsLessThan() {
-        ArrayList<String> coursesWithStudents = new ArrayList<String>();
+        ArrayList<String> coursesWithStudents = new ArrayList<>();
 
         for (int i = 0; i < CourseGrader.convertToList().size(); i++) {
             int[] gradesDistribution = CourseGrader.convertToList().get(i).getGrades();
@@ -389,7 +389,7 @@ public class CourseGraderTest {
     }
 
     @Test
-    public void totalStudentsInCoursesDNE() {
+    public void courseWithMostStudentsDNE() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Invalid input");
         CourseGrader.getMostStudents("DERP");
@@ -436,7 +436,7 @@ public class CourseGraderTest {
     }
 
     @Test
-    public void totalStudentsInCoursesDNE() {
+    public void courseWithLeastStudentsDNE() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Invalid input");
         CourseGrader.getLeastStudents("DERP");
@@ -463,7 +463,6 @@ public class CourseGraderTest {
                 total += totalStudents;
             }
         }
-
         assertEquals(total, CourseGrader.totalStudentsInCourses( < "ACCY", "CS", "MATH" >));
     }
 
