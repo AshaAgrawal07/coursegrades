@@ -162,7 +162,7 @@ public class CourseGraderTest {
     //-------------
     /**
      @Test public void getCoursesFromDeptExists() {
-     assertEquals( **fill **,CourseGrader.getCoursesFromDept("ACCY"));
+     assertEquals( 7+7+4+9,CourseGrader.getCoursesFromDept("AAS"));
      }
 
      @Test public void deptNull() {
@@ -231,12 +231,6 @@ public class CourseGraderTest {
 
      @Test public void getCoursesWithinRangeExistsEquals() {
      assertEquals( **fill **,CourseGrader.getCoursesWithinRange(400, 400));
-     }
-
-     @Test public void courseRangeNull() {
-     thrown.expect(IllegalArgumentException.class);
-     thrown.expectMessage("Null input");
-     CourseGrader.getCoursesWithinRange(null, null);
      }
 
      @Test public void courseRangeMakesNoSense() {

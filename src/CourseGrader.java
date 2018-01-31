@@ -1,6 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+
 
 public class CourseGrader {
 
@@ -81,13 +85,14 @@ public class CourseGrader {
 
     //method for part 2
 
-    public static ArrayList<Object> convertToList() {
+    public static ArrayList<CourseGrader> convertToList() {
         List<String> files = Data.getJsonFilesAsList();
-        ArrayList<Object> filesIntoObjects = new ArrayList<Object>(files.size());
-        if (files.size() != 0) {
-            for (int i = 0; i < files.size(); i++) {
-                filesIntoObjects.set(i, Data.getFileContentsAsString(files.get(i)));
-            }
+        ArrayList<CourseGrader> filesIntoObjects = new ArrayList<CourseGrader>();
+
+        for (String filename : files) {
+            Gson gson = new Gson();
+            String str = Data.getFileContentsAsString(filename);
+            filesIntoObjects.addAll(Arrays.asList(gson.fromJson(str, CourseGrader[].class)));
         }
         return filesIntoObjects;
     }
@@ -101,6 +106,15 @@ public class CourseGrader {
      */
     public ArrayList<String> getCoursesFromDept(String dept) {
         ArrayList<String> coursesFromDept = new ArrayList<String>();
+        if (dept == null || dept.toUpperCase().trim() == "") {
+            throw new IllegalArgumentException("Null input");
+        }
+
+        //for (int i = 0; i <)
+
+        if (coursesFromDept.size() == 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
         return coursesFromDept;
     }
 
@@ -125,6 +139,10 @@ public class CourseGrader {
      */
     public ArrayList<String> getCoursesWithinRange(int lowerBound, int upperBound) {
         ArrayList<String> coursesInRange = new ArrayList<String>();
+
+        if (lowerBound > upperBound && upperBound != 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
         return coursesInRange;
     }
 
