@@ -1,8 +1,8 @@
+import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
-import com.google.gson.Gson;
 
 import static org.junit.Assert.*;
 
@@ -12,21 +12,22 @@ public class CourseGraderTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
+
     private CourseGrader classes;
     private CourseGrader[] classesArray;
 
     @Before
     public void setUp() throws Exception {
         Gson gson = new Gson();
-        classes = gson.fromJson(COURSE_JSON, CourseGrader.class);
-        classesArray = gson.fromJSON(COURSE_JSON_ARRAY, CourseGrader[].class);
+        classes = gson.fromJson(CLASSES_JSON, CourseGrader.class);
+        classesArray = gson.fromJson(CLASSES_JSON_ARRAY, CourseGrader[].class);
     }
 
     private static final String CLASSES_JSON = "  { \"CRN\": 60354, \"Subject\": " +
             "\"TE\", \"Number\": 298, \"Title\": \"Introduction to Innovation D\", " +
             "\"Section\": \"IND\", \"Type\": \"LCD\", \"Term\": 120138, \"Instructor\": " +
             "\"Bechtel, Jennifer M\", \"Grades\": [1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]," +
-            " \"Average\": 3.71 },\n";
+            " \"Average\": 3.71 }\n";
 
 
     @Test
@@ -61,12 +62,12 @@ public class CourseGraderTest {
 
     @Test
     public void getTerm() {
-        assertEquals(120138, classes.getTerm());
+        assertEquals("120138", classes.getTerm());
     }
 
     @Test
     public void getInstructor() {
-        assertEquals("Bechtel, Jennifer", classes.getInstructor());
+        assertEquals("Bechtel, Jennifer M", classes.getInstructor());
     }
 
     @Test
@@ -76,7 +77,8 @@ public class CourseGraderTest {
 
     @Test
     public void getGrades() {
-        assertEquals([1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], classes.getGrades());
+        int[] grades = {1, 15, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0};
+        assertEquals(grades, classes.getGrades());
     }
 
     //----
@@ -93,62 +95,65 @@ public class CourseGraderTest {
             " [2, 24, 1, 2, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0], \"Average\": 3.75 },\n" +
             "  { \"CRN\": 51248, \"Subject\": \"AAS\", \"Number\": 100, \"Title\": \"Intro Asian American Studies\", " +
             "\"Section\": \"AD4\", \"Type\": \"DIS\", \"Term\": 120138, \"Instructor\": \"Davis, Thomas E\", \"Grades\":" +
-            " [7, 16, 4, 4, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0], \"Average\": 3.71 },\n]";
+            " [7, 16, 4, 4, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0], \"Average\": 3.71 }\n]";
 
     @Test
-    public void getSubject() {
+    public void getSubjectArray() {
         assertEquals("AAS", classesArray[0].getSubject());
     }
 
     @Test
-    public void getNumber() {
+    public void getNumberArray() {
         assertEquals(100, classesArray[0].getNumber());
     }
 
     @Test
-    public void getTitle() {
+    public void getTitleArray() {
         assertEquals("Intro Asian American Studies", classesArray[0].getTitle());
     }
 
     @Test
-    public void getCRN() {
+    public void getCRNArray() {
         assertEquals(41758, classesArray[0].getCRN());
     }
 
     @Test
-    public void getSection() {
-        assertEquals("AD3", classesArray[0].getSection());
+    public void getSectionArray() {
+        assertEquals("AD1", classesArray[0].getSection());
     }
 
     @Test
-    public void getType() {
+    public void getTypeArray() {
         assertEquals("DIS", classesArray[0].getType());
     }
 
     @Test
-    public void getTerm() {
-        assertEquals(120138, classesArray[0].getTerm());
+    public void getTermArray() {
+        assertEquals("120138", classesArray[0].getTerm());
     }
 
     @Test
-    public void getInstructor() {
-        assertEquals("Aria, Sayuri", classesArray[0].getInstructor());
+    public void getInstructorArray() {
+        assertEquals("Arai, Sayuri", classesArray[0].getInstructor());
     }
 
     @Test
-    public void getAverage() {
+    public void getAverageArray() {
         assertEquals(3.72, classesArray[0].getAverage());
     }
 
     @Test
-    public void getGrades() {
-        assertEquals([6, 16, 5, 3, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0], classesArray[0].getGrades());
+    public void getGradesArray() {
+        int[] grades = {6, 16, 5, 3, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0};
+        assertArrayEquals(grades, classesArray[0].getGrades());
     }
+
+    //FILTERING TESTS BEGIN
 
     //-------------
     //tests for the getCoursesFromDept()
     //-------------
-
+    /**
     @Test
     public void getCoursesFromDeptExists() {
         assertEquals( **fill **,CourseGrader.getCoursesFromDept("ACCY"));
@@ -411,14 +416,14 @@ public class CourseGraderTest {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Null input");
         CourseGrader.totalStudentsWithGrades("", "");
-    }
+    }*/
 
     //-------------
     //tests for avgGPA
     //-------------
 
-    @Test
+    /**@Test
     public void avgGPA() {
         assertEquals( **fill **,CourseGrader.avgGPA());
-    }
+    }*/
 }

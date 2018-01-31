@@ -1,20 +1,42 @@
 import java.util.ArrayList;
+import com.google.gson.annotations.SerializedName;
 
 public class CourseGrader {
 
+    @SerializedName("CRN")
     private int CRN;
+
+    @SerializedName("Subject")
     private String Subject;
+
+    @SerializedName("Number")
     private int Number;
+
+    @SerializedName("Title")
     private String Title;
+
+    @SerializedName("Section")
     private String Section;
+
+    @SerializedName("Type")
     private String Type;
-    private String dTerm;
+
+    @SerializedName("Term")
+    private String Term;
+
+    @SerializedName("Grades")
     private int[] Grades;
+
+    @SerializedName("Instructor")
     private String Instructor;
+
+    @SerializedName("Average")
     private double Average;
+
 
     //getMethods for parsing
 
+    @SerializedName("CRN")
     public int getCRN() {
         return CRN;
     }
@@ -156,8 +178,8 @@ public class CourseGrader {
      *
      * @return the average GPA of the students per class
      */
-    public ArrayList<double> avgGPA () {
-        ArrayList<Double> averages = new ArrayList<String>();
+    public ArrayList<Double> avgGPA () {
+        ArrayList<Double> averages = new ArrayList<Double>();
         return averages;
     }
 }
