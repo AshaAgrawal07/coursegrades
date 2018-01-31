@@ -160,14 +160,15 @@ public class CourseGrader {
         if (lowerBound > upperBound && upperBound != 0) {
             throw new IllegalArgumentException("Invalid input");
         }
-
+        if (upperBound == 0) {
+            upperBound = 1000000000;
+        }
         for (int i = 0; i < convertToList().size(); i++) {
             int courseNum = convertToList().get(i).getNumber();
             if (courseNum <= upperBound && courseNum >= lowerBound) {
                 coursesInRange.add(convertToList().get(i).getTitle());
             }
         }
-
         return coursesInRange;
     }
 
@@ -185,6 +186,11 @@ public class CourseGrader {
         if (lowerBound > upperBound && upperBound != 0) {
             throw new IllegalArgumentException("Invalid input");
         }
+
+        if (upperBound == 0) {
+            upperBound = 100000000;
+        }
+
         for (int i = 0; i < convertToList().size(); i++) {
             int[] gradesDistribution = convertToList().get(i).getGrades();
             int totalStudents = 0;
