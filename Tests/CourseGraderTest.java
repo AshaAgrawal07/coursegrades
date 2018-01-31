@@ -160,7 +160,7 @@ public class CourseGraderTest {
     //-------------
     //tests for the getCoursesFromDept()
     //-------------
-    /**
+
      @Test public void getCoursesFromDeptExists() {
      assertEquals( 7+7+4+9,CourseGrader.getCoursesFromDept("AAS"));
      }
@@ -188,11 +188,11 @@ public class CourseGraderTest {
      //-------------
 
      @Test public void getProfsExistsLowerCase() {
-     assertEquals( **fill **,CourseGrader.getProfs("tim"));
+     assertEquals( 17+18+19+12,CourseGrader.getProfs("tim"));
      }
 
      @Test public void getProfsExistsUpperCase() {
-     assertEquals( **fill **,CourseGrader.getProfs("Tim"));
+     assertEquals( 17+18+19+12,CourseGrader.getProfs("Tim"));
      }
 
      @Test public void profDNE() {
@@ -212,7 +212,7 @@ public class CourseGraderTest {
      thrown.expectMessage("Null input");
      CourseGrader.getProfs("");
      }
-
+/**
      //-------------
      //tests for getCoursesWithinRange
      //-------------
@@ -255,22 +255,10 @@ public class CourseGraderTest {
      assertEquals( **fill **,CourseGrader.getCoursesWithNumberOfStudents(200, 0));
      }
 
-     @Test public void studentRangNull() {
-     thrown.expect(IllegalArgumentException.class);
-     thrown.expectMessage("Null input");
-     CourseGrader.getCoursesWithNumberOfStudents(null, null);
-     }
-
      @Test public void studentRangeMakesNoSense() {
      thrown.expect(IllegalArgumentException.class);
      thrown.expectMessage("Invalid input");
      CourseGrader.getCoursesWithNumberOfStudents(400, 300);
-     }
-
-     @Test public void studentRangeDNE() {
-     thrown.expect(IllegalArgumentException.class);
-     thrown.expectMessage("Invalid input");
-     CourseGrader.getCoursesWithNumberOfStudents(1000, 3000);
      }
 
      //-------------
@@ -379,13 +367,14 @@ public class CourseGraderTest {
      thrown.expect(IllegalArgumentException.class);
      thrown.expectMessage("Null input");
      CourseGrader.totalStudentsWithGrades("", "");
-     }*/
+     }
 
     //-------------
     //tests for avgGPA
     //-------------
 
-    /**@Test public void avgGPA() {
-    assertEquals( **fill **,CourseGrader.avgGPA());
-    }*/
+    @Test public void avgGPA() {
+    assertEquals( 4.0,CourseGrader.avgGPA());
+    }
+    */
 }

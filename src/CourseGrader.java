@@ -104,13 +104,18 @@ public class CourseGrader {
      * @param dept the department or course subject that we are looking in
      * @return tan Arraylist of the names of the courses in the given department
      */
-    public ArrayList<String> getCoursesFromDept(String dept) {
+    public static ArrayList<String> getCoursesFromDept(String dept) throws IllegalArgumentException {
         ArrayList<String> coursesFromDept = new ArrayList<String>();
         if (dept == null || dept.toUpperCase().trim() == "") {
             throw new IllegalArgumentException("Null input");
         }
+        convertToList();
 
-        //for (int i = 0; i <)
+        for (int i = 0; i < convertToList().size(); i++) {
+            if ( convertToList().get(i).getSubject().equals(dept.toUpperCase())) {
+                coursesFromDept.add(convertToList().get(i).getTitle());
+            }
+        }
 
         if (coursesFromDept.size() == 0) {
             throw new IllegalArgumentException("Invalid input");
@@ -123,8 +128,20 @@ public class CourseGrader {
      * @param prof a string with part of a name
      * @return an ArrayList of professor names with the given String in it
      */
-    public ArrayList<String> getProfs(String prof) {
+    public static ArrayList<String> getProfs(String prof) throws IllegalArgumentException {
         ArrayList<String> profs = new ArrayList<String>();
+        if (prof == null || prof.toLowerCase().trim() == "") {
+            throw new IllegalArgumentException("Null input");
+        }
+
+        for (int i = 0; i < convertToList().size(); i++) {
+            if (convertToList().get(i).getInstructor().toLowerCase().contains(prof)) {
+                profs.add(convertToList().get(i).getInstructor());
+            }
+        }
+        if (profs.size() == 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
         return profs;
     }
 
@@ -137,12 +154,20 @@ public class CourseGrader {
      *                      lowerBound"
      * @return an ArrayList of courses that are within the specified range
      */
-    public ArrayList<String> getCoursesWithinRange(int lowerBound, int upperBound) {
+    public static ArrayList<String> getCoursesWithinRange(int lowerBound, int upperBound) throws IllegalArgumentException {
         ArrayList<String> coursesInRange = new ArrayList<String>();
 
         if (lowerBound > upperBound && upperBound != 0) {
             throw new IllegalArgumentException("Invalid input");
         }
+
+        for (int i = 0; i < convertToList().size(); i++) {
+            int courseNum = convertToList().get(i).getNumber();
+            if (courseNum <= upperBound && courseNum >= lowerBound) {
+                coursesInRange.add(convertToList().get(i).getTitle());
+            }
+        }
+
         return coursesInRange;
     }
 
@@ -155,18 +180,50 @@ public class CourseGrader {
      *                      lowerBound"
      * @return an ArrayList of courses that meet the bounds
      */
-    public ArrayList<String> getCoursesWithNumberOfStudents(int lowerBound, int upperBound) {
+    public static ArrayList<String> getCoursesWithNumberOfStudents(int lowerBound, int upperBound) throws IllegalArgumentException {
         ArrayList<String> coursesWithStudents = new ArrayList<String>();
+        if (lowerBound > upperBound && upperBound != 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+        for (int i = 0; i < convertToList().size(); i++) {
+            int[] gradesDistribution = convertToList().get(i).getGrades();
+            int totalStudents = 0;
+            for (int j = 0; j < gradesDistribution.length; j++) {
+                totalStudents += gradesDistribution[j];
+            }
+            if (totalStudents <= upperBound && totalStudents >= lowerBound) {
+                coursesWithStudents.add(convertToList().get(i).getTitle());
+            }
+        }
+
         return coursesWithStudents;
     }
 
     /**
      *
-     * @param course the course we want to search through
-     * @return the most number of students the given course ever had
+     * @param course the subject we want to search through
+     * @return the most number of students the given subject ever had
      */
-    public ArrayList<Integer> getMostStudents(String course) {
-        ArrayList<Integer> mostStudents = new ArrayList<Integer>();
+    public static int getMostStudents(String course) {
+        int mostStudents = 0;
+        if (course == null || course.toLowerCase().trim() == "") {
+            throw new IllegalArgumentException("Null input");
+        }
+
+        for (int i = 0; i < convertToList().size(); i++) {
+            if (convertToList().get(i).getSubject().toUpperCase().equals(course.toUpperCase().trim())) {
+               //get the grade distribution and then find the total number of students in the course
+                int[] gradesDistribution = convertToList().get(i).getGrades();
+                int totalStudents = 0;
+                for (int j = 0; j < gradesDistribution.length; j++) {
+                    totalStudents += gradesDistribution[j];
+                }
+                //reset the most number of students in the course if need be
+                if(totalStudents > mostStudents) {
+                    mostStudents = totalStudents;
+                }
+            }
+        }
         return mostStudents;
     }
 
@@ -175,8 +232,26 @@ public class CourseGrader {
      * @param course the course we want to search through
      * @return the least number of students the given course ever had
      */
-    public ArrayList<Integer> getLeastStudents(String course) {
-        ArrayList<Integer> leastStudents = new ArrayList<Integer>();
+    public static int getLeastStudents(String course) {
+        int leastStudents = 0;
+        if (course == null || course.toLowerCase().trim() == "") {
+            throw new IllegalArgumentException("Null input");
+        }
+
+        for (int i = 0; i < convertToList().size(); i++) {
+            if (convertToList().get(i).getSubject().toUpperCase().equals(course.toUpperCase().trim())) {
+                //get the grade distribution and then find the total number of students in the course
+                int[] gradesDistribution = convertToList().get(i).getGrades();
+                int totalStudents = 0;
+                for (int j = 0; j < gradesDistribution.length; j++) {
+                    totalStudents += gradesDistribution[j];
+                }
+                //reset the most number of students in the course if need be
+                if(totalStudents < leastStudents) {
+                    leastStudents = totalStudents;
+                }
+            }
+        }
         return leastStudents;
     }
 
@@ -187,7 +262,7 @@ public class CourseGrader {
      * @param courses the collection of classes that we are searching through
      * @return the total number of students that have taken the collection of classes
      */
-    public int totalStudentsInCourses (ArrayList<String> courses) {
+    public static int totalStudentsInCourses (ArrayList<String> courses) {
         int total = 0;
         return total;
     }
@@ -199,7 +274,7 @@ public class CourseGrader {
      *                   if upperBound is lower than the lowerBound, then there will be an invalid input error
      * @return the total number of students within the grade ranges
      */
-    public int totalStudentsWithGrades (String lowerBound, String upperBound) {
+    public static int totalStudentsWithGrades (String lowerBound, String upperBound) throws IllegalArgumentException {
         int total = 0;
 
         /*for(int i = 0; i < courseObjects.size; i++) {
@@ -214,7 +289,7 @@ public class CourseGrader {
      *
      * @return the average GPA of the students per class
      */
-    public ArrayList<Double> avgGPA () {
+    public static ArrayList<Double> avgGPA () {
         ArrayList<Double> averages = new ArrayList<Double>();
         return averages;
     }
